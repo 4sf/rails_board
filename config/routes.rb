@@ -1,18 +1,30 @@
 Rails.application.routes.draw do
 
+  get '/login' => 'users#login'
+
+  get '/login_session' => 'users#login_session'
+
+  get '/logout' => 'users#logout'
+
+  get '/signup' => 'users#signup'
+
+  get '/register' => 'users#register'
+
   get '/' => 'posts#index'
 
-  get 'posts/index'
+  get '/posts/index'
 
-  get 'posts/new'
+  get '/posts/new'
 
-  get 'posts/create'
+  get '/posts/create'
 
-  get 'posts/destroy/:id' => 'posts#destroy'
+  get '/posts/destroy/:id' => 'posts#destroy'
 
-  get 'posts/edit/:id' => 'posts#edit'
+  get '/posts/edit/:id' => 'posts#edit'
 
-  get 'posts/update/:id' => 'posts#update'
+  get '/posts/update/:id' => 'posts#update'
+  
+  get '/posts/:id/add_comment' => 'posts#add_comment'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

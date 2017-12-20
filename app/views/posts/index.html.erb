@@ -12,7 +12,14 @@
     <!-- 데이터베이스에서 우리가 수정하고자 하는 글을 찾는다. -->
     <!-- 찾은 글을 <form>에 보여주고 수정힐 내용을 입력 받는다. -->
     <!-- 입력받은 내용을 받아서 데이터베이스에서 수정한다. -->
-
-
   </p>
+  <form action="/posts/<%= post.id %>/add_comment/">
+    <input type="text" name="content">
+    <input type="submit">
+  </form>
+  <p>--댓글목록--</p>
+  <% post.comments.each do |comment| %>
+  <p><%= comment.content %></p>
+  <% end %>
+
 <% end %>

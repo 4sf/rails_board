@@ -36,4 +36,12 @@ class PostsController < ApplicationController
     )
     redirect_to '/'
   end
+  
+  def add_comment
+    Comment.create(
+      content: params[:content],
+      post_id: params[:id]
+    )
+    redirect_to '/'
+  end
 end
