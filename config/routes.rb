@@ -18,12 +18,14 @@ Rails.application.routes.draw do
 
   get '/posts/create'
 
+  get '/posts/show/:id' => 'posts#show'
+
   get '/posts/destroy/:id' => 'posts#destroy'
 
   get '/posts/edit/:id' => 'posts#edit'
 
   get '/posts/update/:id' => 'posts#update'
-  
+
   get '/posts/:id/add_comment' => 'posts#add_comment'
 
   # The priority is based upon order of creation: first created -> highest priority.

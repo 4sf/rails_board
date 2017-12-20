@@ -1,25 +1,30 @@
-<h1>게시판</h1>
-<p>게시판입니다.</p>
-<a href="/posts/new">새글쓰기</a>
-<% @posts.each do |post| %>
-  <p>
-    제목 : <%= post.title %><br>
-    내용 : <%= post.content %>
-    <a href="/posts/destroy/<%= post.id %>">[삭제]</a>
-    <!-- 데이터베이스에서 우리가 삭제하고자 하는 글을 찾는다. -->
-    <!-- 해당하는 글을 삭제한다. -->
-    <a href="/posts/edit/<%= post.id %>">[수정]</a>
-    <!-- 데이터베이스에서 우리가 수정하고자 하는 글을 찾는다. -->
-    <!-- 찾은 글을 <form>에 보여주고 수정힐 내용을 입력 받는다. -->
-    <!-- 입력받은 내용을 받아서 데이터베이스에서 수정한다. -->
-  </p>
-  <form action="/posts/<%= post.id %>/add_comment/">
-    <input type="text" name="content">
-    <input type="submit">
-  </form>
-  <p>--댓글목록--</p>
-  <% post.comments.each do |comment| %>
-  <p><%= comment.content %></p>
-  <% end %>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">게시판</h1>
+      <p class="lead">여러분의 이야기를 남길 수 있는 게시판입니다.</p>
+      <a class="btn btn-primary btn-lg" href="/posts/new" role="button">글쓰기</a>
+    </div>
+  </div>
+  <div class="container">
 
-<% end %>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">제목</th>
+          <th scope="col">글쓴이</th>
+          <th scope="col">작성일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+          <th scope="row"><%= post.id %></th>
+          <td><a href="/posts/show/<%= post.id %>"><%= post.title %></a></td>
+          <td><%= post.user.email %></td>
+          <td><%= time_ago_in_words(post.created_at) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

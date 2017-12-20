@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="card" style="width: 70rem;">
+    <div class="card-body">
+      <h4 class="card-title"><%= @post.title %></h4>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @post.user.email %></h6>
+      <p class="card-text"><%= @post.content %></p>
+      <a class="card-link btn btn-primary" href="/posts/edit/<%= @post.id %>">수정</a>
+      <a class="card-link btn btn-danger" href="/posts/destroy/<%= @post.id %>">삭제</a>
+    </div>
+  </div>
+
+  <div class="card" style="width: 70rem;">
+    <div class="card-header">
+      댓글목록
+    </div>
+    <ul class="list-group list-group-flush">
+      <% @post.comments.each do |comment| %>
+      <li class="list-group-item">
+        <%= comment.user.email %> : <%= comment.content %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+    <!-- 데이터베이스에서 우리가 삭제하고자 하는 글을 찾는다. -->
+    <!-- 해당하는 글을 삭제한다. -->
+
+    <!-- 데이터베이스에서 우리가 수정하고자 하는 글을 찾는다. -->
+    <!-- 찾은 글을 <form>에 보여주고 수정힐 내용을 입력 받는다. -->
+    <!-- 입력받은 내용을 받아서 데이터베이스에서 수정한다. -->
+  <form action="/posts/<%= @post.id %>/add_comment/">
+    <div class="form-group">
+      <input type="text" name="content" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="댓글을 입력해주세요.">
+    </div>
+    <button type="submit" class="btn btn-primary">댓글쓰기</button>
+  </form>
+</div>
